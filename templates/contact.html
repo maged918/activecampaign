@@ -8,54 +8,56 @@
     {{ form.as_p }}
     <button type="submit">Submit</button>
 </form>
-{% endblock %}
 
 <script type="text/javascript">
-// listen for form submit, and then 
-document.querySelector('#email_form')
-  .addEventListener("submit", function (e) {
-    // stop the normal behavior
-    e.preventDefault() 
+    // listen for form submit, and then 
+    document.querySelector('#email_form')
+      .addEventListener("submit", function (e) {
+        // stop the normal behavior
+        e.preventDefault() 
+    
+        // get the email value out of the form
+        var submittedEmail = document.querySelector('#email_form #id_contact_email').value;
+    
+        // maybe do some validation
+        console.log(submittedEmail);
+    
+        // set the email in localStorage 
+        localStorage.setItem("visitorEmail", submittedEmail);
+    
+        // release default 
+        this.submit();
+    });
+    
+    if (localStorage.getItem("visitorEmail")) {
+      var trackcmp_email = localStorage.getItem("visitorEmail");
+      console.log("visitorEmail is: %s", trackcmp_email);
+    } else {
+      var trackcmp_email = "";
+    }
+    
+    // call the rest of the site tracking snippet here.
+    // Your "vanilla" site tracking snippet is found in ActiveCampaign settings --> tracking
+    
+    var trackcmp = document.createElement("script");
+    trackcmp.async = true;
+    trackcmp.type = 'text/javascript';
+    
+    // this will be different than your snippet
+    // see the actid query parameter in the string on the following line
+    trackcmp.src = '//trackcmp.net/visit?actid=1000229208&e='+encodeURIComponent(trackcmp_email)+'&r='+encodeURIComponent(document.referrer)+'&u='+encodeURIComponent(window.location.href);
+    
+    
+    // this builds the site tracking snippet 
+    // and appends it to the <head> tag
+    var trackcmp_s = document.getElementsByTagName("script");
+    if (trackcmp_s.length) {
+      trackcmp_s[0].parentNode.appendChild(trackcmp);
+    } else {
+      var trackcmp_h = document.getElementsByTagName("head");
+      trackcmp_h.length && trackcmp_h[0].appendChild(trackcmp);
+    }
+    </script>
 
-    // get the email value out of the form
-    var submittedEmail = document.querySelector('#email_form #id_contact_email').value;
+{% endblock %}
 
-    // maybe do some validation
-    console.log(submittedEmail);
-
-    // set the email in localStorage 
-    localStorage.setItem("visitorEmail", submittedEmail);
-
-    // release default 
-    this.submit();
-});
-
-if (localStorage.getItem("visitorEmail")) {
-  var trackcmp_email = localStorage.getItem("visitorEmail");
-  console.log("visitorEmail is: %s", trackcmp_email);
-} else {
-  var trackcmp_email = "";
-}
-
-// call the rest of the site tracking snippet here.
-// Your "vanilla" site tracking snippet is found in ActiveCampaign settings --> tracking
-
-var trackcmp = document.createElement("script");
-trackcmp.async = true;
-trackcmp.type = 'text/javascript';
-
-// this will be different than your snippet
-// see the actid query parameter in the string on the following line
-trackcmp.src = '//trackcmp.net/visit?actid=1000229208&e='+encodeURIComponent(trackcmp_email)+'&r='+encodeURIComponent(document.referrer)+'&u='+encodeURIComponent(window.location.href);
-
-
-// this builds the site tracking snippet 
-// and appends it to the <head> tag
-var trackcmp_s = document.getElementsByTagName("script");
-if (trackcmp_s.length) {
-  trackcmp_s[0].parentNode.appendChild(trackcmp);
-} else {
-  var trackcmp_h = document.getElementsByTagName("head");
-  trackcmp_h.length && trackcmp_h[0].appendChild(trackcmp);
-}
-</script>
