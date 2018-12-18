@@ -1,6 +1,37 @@
 
 <p>Footer Removed</p>
 
+<script type="text/javascript">
+    // function getUrlVar(key){
+    // var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search); 
+    // return result && decodeURIComponent(result[1]) || ""; 
+    // }
+
+    function getUrlVar(key){
+        if (localStorage.getItem("visitorEmail")) {
+           var trackcmp_email = localStorage.getItem("visitorEmail");
+        console.log("visitorEmail is: %s", trackcmp_email);
+        } else {
+        var trackcmp_email = "";
+        }
+        return trackcmp_email;
+    }
+
+    var email = getUrlVar('email');
+    var trackcmp_email = (typeof(email) != "undefined") ? email : '';
+    var trackcmp = document.createElement("script");
+    trackcmp.async = true;
+    trackcmp.type = 'text/javascript';
+    trackcmp.src = '//trackcmp.net/visit?actid=1000229208&e='+encodeURIComponent(trackcmp_email)+'&r='+encodeURIComponent(document.referrer)+'&u='+encodeURIComponent(window.location.href);
+    var trackcmp_s = document.getElementsByTagName("script");
+    if (trackcmp_s.length) {
+    trackcmp_s[0].parentNode.appendChild(trackcmp);
+    } else {
+    var trackcmp_h = document.getElementsByTagName("head");
+    trackcmp_h.length && trackcmp_h[0].appendChild(trackcmp);
+    }
+    </script>
+
 <!-- <script type="text/javascript">
     // Set to false if opt-in required
     var trackByDefault = true;
