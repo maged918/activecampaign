@@ -121,10 +121,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# DEFAULT_FROM_EMAIL = 'maged918@gmail.com'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'maged918@gmail.com'
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
-EMAIL_USE_TLS = False
-EMAIL_PORT = 1025
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# # DEFAULT_FROM_EMAIL = 'maged918@gmail.com'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'maged918@gmail.com'
+# EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
+# EMAIL_USE_TLS = False
+# EMAIL_PORT = 1025
