@@ -25,9 +25,7 @@ SECRET_KEY = '*mc%9wdo$g3(r2@pt0ps8n1cu@vu#m=8(t=tbj*(w93k7ivai='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['memphis.pythonanywhere.com']
-
-
+ALLOWED_HOSTS = ['memphis.pythonanywhere.com', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
@@ -121,10 +119,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# # DEFAULT_FROM_EMAIL = 'maged918@gmail.com'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'maged918@gmail.com'
-# EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
-# EMAIL_USE_TLS = False
-# EMAIL_PORT = 1025
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# DEFAULT_FROM_EMAIL = 'maged918@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'dlc.ai.bot@gmail.com'
+EMAIL_HOST_PASSWORD = '!randompassforaitesting!'
+EMAIL_USE_TLS = False
+EMAIL_PORT = 1025
