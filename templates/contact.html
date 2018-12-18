@@ -39,24 +39,52 @@
     // call the rest of the site tracking snippet here.
     // Your "vanilla" site tracking snippet is found in ActiveCampaign settings --> tracking
     
-    var trackcmp = document.createElement("script");
-    trackcmp.async = true;
-    trackcmp.type = 'text/javascript';
+    // var trackcmp = document.createElement("script");
+    // trackcmp.async = true;
+    // trackcmp.type = 'text/javascript';
     
-    // this will be different than your snippet
-    // see the actid query parameter in the string on the following line
-    trackcmp.src = '//trackcmp.net/visit?actid=1000229208&e='+encodeURIComponent(trackcmp_email)+'&r='+encodeURIComponent(document.referrer)+'&u='+encodeURIComponent(window.location.href);
+    // // this will be different than your snippet
+    // // see the actid query parameter in the string on the following line
+    // trackcmp.src = '//trackcmp.net/visit?actid=1000229208&e='+encodeURIComponent(trackcmp_email)+'&r='+encodeURIComponent(document.referrer)+'&u='+encodeURIComponent(window.location.href);
     
     
-    // this builds the site tracking snippet 
-    // and appends it to the <head> tag
-    var trackcmp_s = document.getElementsByTagName("script");
-    if (trackcmp_s.length) {
-      trackcmp_s[0].parentNode.appendChild(trackcmp);
-    } else {
-      var trackcmp_h = document.getElementsByTagName("head");
-      trackcmp_h.length && trackcmp_h[0].appendChild(trackcmp);
-    }
+    // // this builds the site tracking snippet 
+    // // and appends it to the <head> tag
+    // var trackcmp_s = document.getElementsByTagName("script");
+    // if (trackcmp_s.length) {
+    //   trackcmp_s[0].parentNode.appendChild(trackcmp);
+    // } else {
+    //   var trackcmp_h = document.getElementsByTagName("head");
+    //   trackcmp_h.length && trackcmp_h[0].appendChild(trackcmp);
+    // }
+
+        var trackByDefault = true;
+    
+        function acEnableTracking(trackcmp_email) {
+            var expiration = new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30);
+            document.cookie = "ac_enable_tracking=1; expires= " + expiration + "; path=/";
+            acTrackVisit(trackcmp_email);
+        }
+
+        function acTrackVisit(trackcmp_email) {
+            // var trackcmp_email = '';
+            var trackcmp = document.createElement("script");
+            console.log('In ac track visit', trackcmp_email);
+            trackcmp.async = true;
+            trackcmp.type = 'text/javascript';
+            trackcmp.src = '//trackcmp.net/visit?actid=1000229208&e='+encodeURIComponent(trackcmp_email)+'&r='+encodeURIComponent(document.referrer)+'&u='+encodeURIComponent(window.location.href);
+            var trackcmp_s = document.getElementsByTagName("script");
+            if (trackcmp_s.length) {
+                trackcmp_s[0].parentNode.appendChild(trackcmp);
+            } else {
+                var trackcmp_h = document.getElementsByTagName("head");
+                trackcmp_h.length && trackcmp_h[0].appendChild(trackcmp);
+            }
+        }
+
+        if (trackByDefault || /(^|; )ac_enable_tracking=([^;]+)/.test(document.cookie)) {
+            acEnableTracking(trackcmp_email);
+        }
     </script>
 
 {% endblock %}
