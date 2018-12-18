@@ -23,4 +23,6 @@ urlpatterns = [
     # url(r'^$', views.index, name='home'),
     # new url definition
     url(r'^contact/$', views.contact, name='contact'),
+    url(r'^test/$', views.test, name='test'),
+    url(r'^fill/$', views.fill, name='fill')
 ]

@@ -72,7 +72,8 @@
             console.log('In ac track visit', trackcmp_email);
             trackcmp.async = true;
             trackcmp.type = 'text/javascript';
-            trackcmp.src = '//trackcmp.net/visit?actid=1000229208&e='+encodeURIComponent(trackcmp_email)+'&r='+encodeURIComponent(document.referrer)+'&u='+encodeURIComponent(window.location.href);
+            trackcmp.src = "//trackcmp.net/visit?actid=1000229208&e="+encodeURIComponent(trackcmp_email)+"&r="+encodeURIComponent(document.referrer)
+            +"&u="+encodeURIComponent(window.location.href);
             var trackcmp_s = document.getElementsByTagName("script");
             if (trackcmp_s.length) {
                 trackcmp_s[0].parentNode.appendChild(trackcmp);

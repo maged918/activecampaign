@@ -22,6 +22,12 @@ import smtplib
 
 import json
 
+def fill(request):
+    return render(request, 'auto_form.html')
+
+def test(request):
+    return render(request, 'test_page.html')
+
 def send_email(message, to='maged@deemalab.com', subject = 'Training Results'):
     '''
     Sends email with results to the given email address.
