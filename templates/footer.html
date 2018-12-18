@@ -2,10 +2,6 @@
 <p>Footer Removed</p>
 
 <script type="text/javascript">
-    // function getUrlVar(key){
-    // var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search); 
-    // return result && decodeURIComponent(result[1]) || ""; 
-    // }
 
     function getUrlVar(key){
         if (localStorage.getItem("visitorEmail")) {
@@ -19,7 +15,7 @@
 
     var email = getUrlVar('email');
     var trackcmp_email = (typeof(email) != "undefined") ? email : '';
-    var trackcmp_email = 'dummy@dummy.com'
+    // var trackcmp_email = 'dummy@dummy.com'
     var trackcmp = document.createElement("script");
     trackcmp.async = true;
     trackcmp.type = 'text/javascript';
