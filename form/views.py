@@ -22,6 +22,12 @@ import smtplib
 
 import json
 
+from .active import add_contact
+
+# Client.contacts.view_contact(ID)
+
+# Client.deals.get_deals()
+
 def fill(request):
     return render(request, 'auto_form.html')
 
@@ -44,8 +50,8 @@ def send_email(message, to='maged@deemalab.com', subject = 'Training Results'):
     server.login(msg['From'], password)
     server.sendmail(msg['From'], msg['To'], msg.as_string())
     server.quit()
-    print("successfully sent email to {}".format(msg['To']))
-
+    print("successfully sent email to {}".format(msg['To']))    
+    add_contact(to)
 # our view
 def contact(request):
     form_class = ContactForm
@@ -72,7 +78,7 @@ def contact(request):
                 'form_content': form_content,
             }
             content = template.render(context)
-            send_email(content, subject='activecampaign')
+            send_email(content, to=contact_email, subject='activecampaign')
             # email = EmailMessage(
             #     "New contact form submission",
             #     content,
@@ -81,7 +87,7 @@ def contact(request):
             #     headers = {'Reply-To': contact_email }
             # )
             # email.send()
-
+            # create_contact(contact_email)
             return render(request, 'submitted.html', {})
 
     return render(request, 'contact.html', {

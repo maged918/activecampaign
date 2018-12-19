@@ -47,7 +47,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'activecampaign.urls'
+ROOT_URLCONF = 'project.urls'
 
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'activecampaign.wsgi.application'
+WSGI_APPLICATION = 'project.wsgi.application'
 
 
 # Database
